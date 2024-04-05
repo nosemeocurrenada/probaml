@@ -16,6 +16,7 @@
 
 
 \begin{document}
+
 \begin{ejercicio}{8a}{
 	Probar que si $\Phi$ es convexa,
 	$$
@@ -23,9 +24,65 @@
 	$$
 	para todo $ x,y \in \R $
 }{
-
+	Sea $x \in \R$, considero el polinomio de taylor de $\Phi$ de grado 2 centrado en $x$, luego para todo $y \in \R$, existe $\xi$ tal que:
+	$$
+		\Phi(y) = \Phi(x) + \Phi'(x) (y-x) + \Phi''(\xi) \frac{(y-x)^2}{2}
+	$$
+	$\Phi(\xi) \ge 0$ por hipotesis, luego
+	$$
+		\Phi(y) \ge \Phi(x) + \Phi'(x) (y-x)
+	$$
 }
 \end{ejercicio}
+
+\begin{ejercicio}{8b}{
+	Probar que 
+	$$
+		\Phi(\frac{x+y}{2}) \le \frac{1}{2}\Phi(x) + \frac{1}{2}\Phi(y)
+	$$
+	para todo $ x,y \in \R $
+}{
+	Aplicando el item anterior,
+	$$
+		\Phi(x) \ge \Phi(\frac{x+y}{2}) + \Phi'(\frac{x+y}{2}) \frac{x-y}{2}
+	$$
+	y
+	$$
+		\Phi(y) \ge \Phi(\frac{x+y}{2}) + \Phi'(\frac{x+y}{2}) \frac{y-x}{2}
+	$$
+
+	Sumando las desigualdades queda
+	$$
+		\Phi(x) + \Phi(y) \ge 2 \Phi(\frac{x+y}{2})
+	$$
+}
+\end{ejercicio}
+
+\begin{ejercicio}{8c}{
+	$\Phi: \R^d \to \R$	se dice convexa si la matriz $(\Phi_{x_i x_j})$ es semidefinida positiva para todo $x \in \R^d$.
+	Es decir, $\sum_{i=1}^n \sum_{j=1}^n \Phi_{x_i x_j} \xi_i \xi_j \ge 0$ para todo $\xi \in \R^d$.
+	Probar que para tal $\Phi$,
+	$$
+		\Phi(y) \ge \Phi(x) + \nabla\Phi(x) \cdot (y-x)
+	$$
+	y
+	$$
+		\Phi(\frac{x+y}{2}) \le \frac{1}{2}\Phi(x) + \frac{1}{2}\Phi(y)
+	$$
+}{
+	Considero el polinomio de Taylor
+	$$
+		\Phi(y) = \Phi(x)
+		+ \sum_{i=1}^d \frac {\partial \Phi}{\partial x_i}(x) (y_i - x_i)
+		+ \sum_{i=1}^d \sum_{j=1}^d \frac{\partial^2 \Phi}{\partial x_i \partial x_j}(x) (y_i - x_i) (y_j - x_j)
+	$$
+
+	el t\'ermino $\sum_{i=1}^d \sum_{j=1}^d \frac{\partial^2 \Phi}{\partial x_i \partial x_j}(x) (y_i - x_i) (y_j - x_j)$ es $\ge 0$ por hipotesis,
+
+	y $\nabla\Phi(x) \cdot (y-x) = \sum_{i=1}^d \frac {\partial \Phi}{\partial x_i}(x) (y_i - x_i)$
+}
+\end{ejercicio}
+
 \begin{ejercicio}{9}{
 	Probar la desigualdad de Jensen
 	$$
