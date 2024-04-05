@@ -1,0 +1,59 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newcommand{\R}{ \mathbb R }
+\newcommand{\E}{ \mathbb E }
+\newenvironment{ejercicio}[3]
+{
+	\paragraph{Ejercicio #1}
+	#2
+	\paragraph{$D/.$}
+	#3
+	$\square$
+}{
+}
+
+
+\begin{document}
+\begin{ejercicio}{8a}{
+	Probar que si $\Phi$ es convexa,
+	$$
+		\Phi(y) \ge \Phi(x) + \Phi'(x)(y-x)
+	$$
+	para todo $ x,y \in \R $
+}{
+
+}
+\end{ejercicio}
+\begin{ejercicio}{9}{
+	Probar la desigualdad de Jensen
+	$$
+		\Phi(\E(X)) \le \E(\Phi(X))
+	$$
+	para toda variable aleatoria $X$ y $\Phi$ convexa
+}{
+	Supongamos $\E(X) < \infty$, y $\E (\Phi(X)) < \infty$.
+
+		Vale $ \Phi(X) \ge \Phi(\E(X)) + \Phi'(\E(X))(X - \E(X)) $ c.s. :
+		Pues fijando un $\omega \in \Omega$, por el ejercicio 8a,
+		$$
+			\Phi(X(\omega))
+			\ge
+			\Phi(\E(X)) + \Phi'(\E(X)) (X(\omega) - \E(X))
+		$$
+
+		Luego, por monotonía de la esperanza
+		$$
+			\E[\Phi(X(\omega))]
+			\ge
+			\E[\Phi(\E(X)) + \Phi'(\E(X)) (X(\omega) - \E(X))]
+			$$$$
+			=
+			\Phi(\E(X)) + \Phi'(\E(X)) \E[X(\omega) - \E(X)]
+			=
+			\Phi(\E(X))
+		$$
+}\end{ejercicio}
+
+\end{document}
