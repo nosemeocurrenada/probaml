@@ -17,6 +17,54 @@
 
 \begin{document}
 
+\begin{ejercicio}{5}{
+	Sea $f:[0,1] \to \R$ una funci\'on continua. Probar que
+	$$
+		\lim_{d\to\infty}
+		\int_0^1 \dots \int_0^1
+		f(
+		\frac{
+			x_1 + \dots + x_d
+		}{d}
+		)
+		dx_1 \dots dx_d
+		=
+		f(\frac{1}{2})
+	$$
+}{
+	Sean $(U_d)_{d \in \mathbb N}$ v.a.i.i.d. con distribucion uniforme en $[0,1]$
+
+	Por ley de grandes numeros,
+	$$
+		\frac {U_1 + \dots + U_d}{d} \overset{P}{\to} \frac{1}{2}
+	$$
+
+	Como $f$ es continua,
+	$$
+		f(\frac {U_1 + \dots + U_d}{d}) \overset{P}{\to} f(\frac{1}{2})
+	$$
+
+	Por ser $f$ continua en el compacto $[0,1]$, $f([0,1])$ es acotada y, en particular, $f(\frac {U_1 + \dots + U_d}{d}) \subseteq f([0,1])$ estan acotados para todo $d \in \mathbb N$, luego
+	$$
+		f(\frac {U_1 + \dots + U_d}{d}) \overset{L^1}{\to} f(\frac{1}{2})
+	$$
+
+
+	Tomando esperanza a ambos lados queda el resultado pues $\E[f(\frac{1}{2})] = f(\frac{1}{2})$, y
+	$\E[f(\frac {U_1 + \dots + U_d}{d})]
+	=
+	\int_0^1 \dots \int_0^1
+	f(
+	\frac{
+		x_1 + \dots + x_d
+	}{d}
+	)
+	dx_1 \dots dx_d$
+
+}
+\end{ejercicio}
+
+
 \begin{ejercicio}{8a}{
 	Probar que si $\Phi$ es convexa,
 	$$
