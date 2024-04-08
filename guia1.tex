@@ -4,32 +4,36 @@
 
 \newcommand{\R}{ \mathbb R }
 \newcommand{\E}{ \mathbb E }
+% \newcommand{\S}{ \mathbb S }
+
 \newenvironment{ejercicio}[3]
 {
 	\paragraph{Ejercicio #1}
 	#2
-	\paragraph{$D/.$}
+	\paragraph{$D/$}
 	#3
-	$\square$
+	\begin{flushright}$\square$\end{flushright}
 }{
 }
 
 
+
 \begin{document}
+
 
 \begin{ejercicio}{5}{
 	Sea $f:[0,1] \to \R$ una funci\'on continua. Probar que
 	$$
 		\lim_{d\to\infty}
 		\int_0^1 \dots \int_0^1
-		f(
+		f\left(
 		\frac{
 			x_1 + \dots + x_d
 		}{d}
-		)
+		\right)
 		dx_1 \dots dx_d
 		=
-		f(\frac{1}{2})
+		f\left(\frac{1}{2}\right)
 	$$
 }{
 	Sean $(U_d)_{d \in \mathbb N}$ v.a.i.i.d. con distribucion uniforme en $[0,1]$
@@ -41,16 +45,16 @@
 
 	Como $f$ es continua,
 	$$
-		f(\frac {U_1 + \dots + U_d}{d}) \overset{P}{\to} f(\frac{1}{2})
+		f\left(\frac {U_1 + \dots + U_d}{d}\right) \overset{P}{\to} f\left(\frac{1}{2}\right)
 	$$
 
-	Por ser $f$ continua en el compacto $[0,1]$, $f([0,1])$ es acotada y, en particular, $f(\frac {U_1 + \dots + U_d}{d}) \subseteq f([0,1])$ estan acotados para todo $d \in \mathbb N$, luego
+	Por ser $f$ continua en el compacto $[0,1]$, $f([0,1])$ es acotada y, en particular, las variables aleatorias $f(\frac {U_1 + \dots + U_d}{d}) \subseteq f([0,1])$ estan acotadas para todo $d \in \mathbb N$, luego
 	$$
-		f(\frac {U_1 + \dots + U_d}{d}) \overset{L^1}{\to} f(\frac{1}{2})
+		f\left(\frac {U_1 + \dots + U_d}{d}\right) \overset{L^1}{\to} f\left(\frac{1}{2}\right)
 	$$
 
 
-	Tomando esperanza a ambos lados queda el resultado pues $\E[f(\frac{1}{2})] = f(\frac{1}{2})$, y
+	Tomando esperanza de ambos lados queda el resultado pues $\E[f(\frac{1}{2})] = f(\frac{1}{2})$, y
 	$\E[f(\frac {U_1 + \dots + U_d}{d})]
 	=
 	\int_0^1 \dots \int_0^1
@@ -101,7 +105,7 @@
 
 	Sumando las desigualdades queda
 	$$
-		\Phi(x) + \Phi(y) \ge 2 \Phi(\frac{x+y}{2})
+		\Phi(x) + \Phi(y) \ge 2 \Phi\left(\frac{x+y}{2}\right)
 	$$
 }
 \end{ejercicio}
@@ -110,15 +114,16 @@
 	$\Phi: \R^d \to \R$	se dice convexa si la matriz $(\Phi_{x_i x_j})$ es semidefinida positiva para todo $x \in \R^d$.
 	Es decir, $\sum_{i=1}^n \sum_{j=1}^n \Phi_{x_i x_j} \xi_i \xi_j \ge 0$ para todo $\xi \in \R^d$.
 	Probar que para tal $\Phi$,
-	$$
+	\begin{equation}
+	\label{cota}
 		\Phi(y) \ge \Phi(x) + \nabla\Phi(x) \cdot (y-x)
-	$$
+	\end{equation}
 	y
 	$$
 		\Phi(\frac{x+y}{2}) \le \frac{1}{2}\Phi(x) + \frac{1}{2}\Phi(y)
 	$$
 }{
-	Considero el polinomio de Taylor
+	Considero el polinomio de Taylor de $\Phi$ alrededor de $x \in R^d$
 	$$
 		\Phi(y) = \Phi(x)
 		+ \sum_{i=1}^d \frac {\partial \Phi}{\partial x_i}(x) (y_i - x_i)
@@ -127,7 +132,21 @@
 
 	el t\'ermino $\sum_{i=1}^d \sum_{j=1}^d \frac{\partial^2 \Phi}{\partial x_i \partial x_j}(x) (y_i - x_i) (y_j - x_j)$ es $\ge 0$ por hipotesis,
 
-	y $\nabla\Phi(x) \cdot (y-x) = \sum_{i=1}^d \frac {\partial \Phi}{\partial x_i}(x) (y_i - x_i)$
+	y $\nabla\Phi(x) \cdot (y-x) = \sum_{i=1}^d \frac {\partial \Phi}{\partial x_i}(x) (y_i - x_i)$.
+	Luego vale (\ref{cota})
+
+	Para ver la segunda parte, aplicamos (\ref{cota})
+	$$
+		\Phi(x) \ge \Phi\left(\frac{x+y}{2}\right) + \nabla\Phi\left(\frac{x+y}{2}\right) \cdot \frac{x-y}{2}
+	$$
+	$$
+		\Phi(y) \ge \Phi\left(\frac{x+y}{2}\right) + \nabla\Phi\left(\frac{x+y}{2}\right) \cdot \frac{y-x}{2}
+	$$
+
+	Sumando las desigualdades queda
+	$$
+		\Phi(x) + \Phi(y) \ge 2 \Phi\left(\frac{x+y}{2}\right)
+	$$
 }
 \end{ejercicio}
 
@@ -150,15 +169,107 @@
 
 		Luego, por monotonía de la esperanza
 		$$
-			\E[\Phi(X(\omega))]
+			\E[\Phi(X)]
 			\ge
-			\E[\Phi(\E(X)) + \Phi'(\E(X)) (X(\omega) - \E(X))]
+			\E[\Phi(\E(X)) + \Phi'(\E(X)) (X - \E(X))]
 			$$$$
 			=
-			\Phi(\E(X)) + \Phi'(\E(X)) \E[X(\omega) - \E(X)]
+			\Phi(\E(X)) + \Phi'(\E(X)) \E[X - \E(X)]
 			=
 			\Phi(\E(X))
 		$$
+}\end{ejercicio}
+
+
+\begin{ejercicio}{10}{
+	Sea $s_d$ el vol\'umen de la esfera de radio uno $\mathbb S^{d-1} = \{x \in \R^d, |x| = 1\}$ de $\R^d$.
+	Probar que el vol\'umen de la esfera de radio $r$ en $\R^d$ es $s_d r^{d-1}$.
+}{
+	Sea $R>0$.
+
+	Haciendo el cambio de variable $T: x \in \R^d \mapsto Rx \in \R^d$, que tiene determinante $R^d$,
+	tenemos que $vol(B_R^d) = R^d vol(B^d)$:
+	$$
+		vol(B_R^d)
+		=
+		\int_{B_R^d} 1 dV
+		=
+		\int_{B_1^d} R^d dV
+		=
+		R^d vol(B^d)
+	$$
+
+	Como la bola de radio $R$ de $\R^d$ es unión disjunta de las esferas de radio $r$ para $0 \le r \le R$, vale
+	$$
+	vol(B_R^d)
+	=
+	\int_{B_R^d} 1 dV
+	=
+	\int_0^R vol(\mathbb S_r^{d-1}) dr
+	$$
+
+	La función $R \mapsto vol(B_R^d)$ es diferenciable por ser una integral, luego
+
+	$$
+		\dfrac{d}{dR} vol(B_R^d)
+		=
+		vol(\mathbb S_R^d) - vol(\mathbb S_0^d)
+	$$
+
+	$\mathbb S_0^d = {0}$ tiene medida cero. Por otro lado
+	$$
+	vol(\mathbb S_R^d)
+	=
+	\dfrac{\text d}{\text d R} vol(B_R^d)
+	=
+	\dfrac{\text d}{\text dR} R^d vol(B^d)
+	=
+	d \cdot R^{d-1} vol(B^d)
+	=
+	R^{d-1} s_d
+	$$
+
+	Donde la ultima igualdad sale de tomar $R=1$ en la ecuacion:
+	$$
+	s_d
+	=
+	vol(\mathbb S_1^d)
+	=
+	d \cdot vol(B^d)
+	$$
+
+}\end{ejercicio}
+
+
+\begin{ejercicio}{15}{
+	Sea
+	$X \sim N(0,1)$
+	Probar que
+	$
+	\E(e^{sX^2}) = \frac{1}{\sqrt{1 - 2s}}
+	$ para 
+	$
+	-\infty < s < \frac{1}{2}
+	$.
+}{
+	$$
+		\E(e^{sX^2})
+		=
+		\int_\R e^{sx^2} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} dx
+	$$
+
+	Como $sx^2 - \frac{x^2}{2} = \frac{x^2}{2}(2s-1)$, tomando el cambio de variable $u = x\sqrt{1-2s}$ tenemos
+	$$
+		\E(e^{sX^2})
+		=
+		\frac{1}{\sqrt{1 - 2s}}
+		\int_\R 
+		\frac{1}{\sqrt{2\pi}}
+		e^{-\frac{u^2}{2}} du	
+	$$
+	
+	y esta ultima integral eval\'ua 1 por ser densidad de una normal (0,1) 
+
 }\end{ejercicio}
 
 \end{document}
