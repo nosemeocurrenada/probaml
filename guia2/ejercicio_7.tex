@@ -1,0 +1,27 @@
+\begin{ejercicio}{7}{
+	Sea $P$ una matriz de transición reversible respecto de $\pi$. Probar que la matriz de transición $P^2$ correspondiente a dos pasos de la cadena, es también reversible respecto de $\pi$
+}{
+	Veamos que la matriz $P^2 = P \cdot P$ corresponde a hacer dos pasos en la cadena:
+	\begin{align*}
+		(P \cdot P)(x,y)
+		& = \sum_{z \in \Omega} P(x,z) P(z,y) \\
+		& = \sum_{z \in \Omega} \mathbb P(X_{t+1}=z|X_t=x) \mathbb P(X_{t+2} = y|X_{t+1} = z) \\
+		& = \sum_{z \in \Omega} \mathbb P(X_{t+1}=z|X_t=x) \mathbb P(X_{t+2} = y|X_{t+1} = z, X_t = x) \\
+		& = \sum_{z \in \Omega} \frac{\mathbb P(X_{t+1}=z, X_t=x)}{\mathbb P(X_t=x)} \frac{\mathbb P(X_{t+2} = y,X_{t+1} = z, X_t = x)}{\mathbb P(X_{t+1} = z, X_t = x)} \\
+		& = \sum_{z \in \Omega} \frac{\mathbb P(X_{t+2} = y,X_{t+1} = z, X_t = x)}{\mathbb P(X_t=x)} \\
+		& = \sum_{z \in \Omega} \mathbb P(X_{t+2} = y,X_{t+1} = z| X_t = x) \\
+		& = \mathbb P(X_{t+2} = y | X_t = x) \\
+	\end{align*}
+
+	Dados $x,y \in \Omega$, $(\pi, P^2)$ verifica balance detallado:
+	\begin{align*}
+		\pi(x) P^2(x,y)
+		& = \sum_{z \in \Omega} \pi(x) P(x,z) P(z,y)
+		= \sum_{z \in \Omega} P(z,x) \pi(z) P(z,y)
+		= \sum_{z \in \Omega} P(z,x) P(y,z) \pi(y)
+		\\
+		& = \sum_{z \in \Omega} \pi(y) P(y,z) P(z,x)
+		= \pi(y) P^2(y,x)
+	\end{align*}
+	Por lo tanto, $\pi$ es reversible respecto $P^2$
+}

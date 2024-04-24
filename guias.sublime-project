@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		// Latextools options
+		"open_pdf_on_build": false,
+		"TEXroot": "guia2.tex",
+    }
+}

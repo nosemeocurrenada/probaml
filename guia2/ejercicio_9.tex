@@ -1,0 +1,61 @@
+\paragraph{Ejercicio 9}
+	Prueba alternativa de la existencia de distribuciones estacionarias. Sea $P$ la matriz de transici\'on de una cadena de Markov en un espacio de estados finito $S$. Para una distribución inicial $\gamma$ en $S$ y $n > 0$, definir
+	\[
+		\nu_n = \frac 1 n (\gamma + \gamma P + \dots + \gamma P^{n-1}).
+	\]
+\begin{enumerate}[a)]
+	\item Probar que para todo $x \in S$ y $n > 0$,
+		\[
+			|\nu_n P(x) - \nu_n(x)| \le \frac 2 n
+		\]
+	\demo{
+		\[
+		\nu_n P - \nu_n
+		= \frac 1 n \gamma (P + \dots + P^n - I - P - \dots - P^{n-1})
+		= \frac 1 n \gamma (P^n - I) 
+		\]
+
+		Luego
+		\[
+			| (\nu_n P - \nu_n)(x) |
+			= \frac 1 n | (\gamma P^n - \gamma) (x) |
+			= \frac 1 n | \mathbb P_\gamma(X_n=x) - \mathbb P_\gamma(X_0 = x) |
+			\le \frac 1 n
+		\]
+
+		Donde
+		$| \mathbb P_\gamma(X_n=x) - \mathbb P_\gamma(X_0 = x) | \le 1$
+		vale por tratarse de la distancia entre dos numeros en $[0,1]$, que tiene di\'ametro 1.
+	}
+
+	\item Probar que existe una subsucesión $(\nu_{n_k})_{k \ge 0}$ tal que
+		\[
+			\lim_{k\to\infty} \nu_{n_k} (x)
+		\]
+		existe para todo $x \in S$.
+	\demo{
+		Identifico $S = \{1 \dots N\}$,
+		y sea
+		$f: \R^N \to \R^N$
+		definida por
+		$f(x) = \sum_{i=1}^N x_i$.
+
+		$(\nu_n)$ es sucesion en el compacto $[0,1]^N \cap f^{-1}(\{1\})$, luego tiene una subsucesion convergente $(\nu_{n_k})$
+	}
+
+	\item Para $x \in S$, definir
+		\[
+			\nu(x) = \lim_{k \to \infty} \nu_{n_k} (x)
+		\]
+		Probar que $\nu$ es una distribución estacionaria para $P$.
+	\demo{
+		Como vale $| \nu_{n_k}P(x) - \nu_{n_k}(x) | \le \frac{2}{n_k}$ para todo $x \in S$, al tomar limite queda
+		\[
+			| \nu P(x) - \nu (x) |
+			= \lim_{k \to \infty} | \nu_{n_k}P(x) - \nu_{n_k}(x) |
+			\le \lim_{k \to \infty} \frac 2 {n_k} 
+			= 0
+			\quad \forall x \in S
+		\]
+	}
+\end{enumerate}

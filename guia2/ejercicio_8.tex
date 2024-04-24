@@ -1,0 +1,47 @@
+\begin{ejercicio}{8}{
+	Sea $\pi$ una distribución invariante para la matriz de transición irreducible $P$. Probar que $\pi(x) > 0$ para todo $x \in S$ sin usar la fórmula vista en clase.
+}{
+	Si $\pi (x) = 0$, por ser $\pi$ distribuci\'on invariante, vale $\pi = \pi P$. Luego
+	\[
+		0 =
+		\pi(x)
+		= (\pi P)(x)
+		= \sum_{y \in \Omega} \pi(y) P(y,x)
+	\]
+	Como todos los terminos corresponden a probabilidades, son no negativos, luego
+	\begin{equation}
+		\label{L}
+		\pi(y) P(y,x) = 0 \quad \forall y \in \Omega
+	\end{equation}
+
+	Como $\pi$ es una distribuci\'on, $\sum_{y \in \Omega} \pi(y) = 1$, y por lo tanto existe un
+	$y \in \Omega$ tal que $\pi(y) \neq 0$.
+
+
+	Como $P$ es irreducible, $\exists r \in \mathbb N / P^r(y,x) > 0$.
+
+
+	Luego
+	\begin{math}
+		\exists z_1, \dots, z_{r-1} \in \Omega
+	/
+		P(y,z_1) P(z_1, z_2) \dots P(z_{r-2}, z_{r-1}) P(z_{r-1}, x) >0
+	\end{math}
+
+
+	Tenemos que valen $P(z_{r-1}, x) > 0$, $\pi(x) = 0$,
+	y usando (\ref{L}) vale
+	$\pi(z_{r-1}) P(z_{r-1}, x) = 0$.
+	Luego $\pi(z_{r-1}) = 0$.
+
+
+	Similarmente,
+	\begin{align*}
+		P(z_{r-2}, z_{r-1}) > 0, \pi(z_{r-1}) = 0 &\implies \pi(z_{r-2}) = 0 \\
+		&\vdots \\
+		P(z_1, y) > 0, \pi(z_1) = 0 &\implies \pi(y) = 0
+	\end{align*}
+	Pero $\pi(y) \neq 0$
+}
+	
+\end{ejercicio}

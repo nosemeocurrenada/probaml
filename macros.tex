@@ -1,0 +1,21 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+
+\sloppy
+
+\newcommand{\R}{ \mathbb R }
+\newcommand{\E}{ \mathbb E }
+% \newcommand{\S}{ \mathbb S }
+\newcommand{\demo}[1]{
+	\paragraph{$D/$}
+	#1
+	\begin{flushright}$\square$\end{flushright}	
+}
+\newenvironment{ejercicio}[3]
+{
+	\paragraph{Ejercicio #1}
+	#2
+	\demo{#3}
+}{
+}
