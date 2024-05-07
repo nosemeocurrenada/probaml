@@ -1,0 +1,56 @@
+\paragraph{Ejercicio 4}
+	Un grafo se dice \'arbol si es conexo y no contiene ciclos. Probar que los siguientes hechos acerca de un grafo $T$ con $n$ v\'ertices y $m$ aristas son equivalentes:
+
+\begin{enumerate}[a)]
+	\item $T$ es un \'arbol.
+	\item $T$ es conexo y $m = n - 1$.
+	\item $T$ no tiene ciclos y $m = n - 1$.
+\end{enumerate}
+
+	Veamos dos lemas previos, si $|V|$ indica la cantidad de v\'ertices y $|E|$ la cantidad de aristas,
+	\begin{enumerate}
+		\item $G=(V,E)$ conexo $\implies$ $|E| \ge |V| - 1$
+		\demo{
+			Si $|V| = 1$, $|E| \ge 0$ vale trivialmente.
+
+			Si vale para $|V| = n$, y suponemos $|V| = n + 1$.
+			
+			Considero un v\'ertice $x \in G$, y el grafo
+			$\tilde{G}=(\tilde{V}, \tilde{E})$
+			que surge de remover el v\'ertice $x$ y todas las aristas que tienen a $x$ en una de sus puntas.
+
+			Luego $|\tilde{V}| = n$, y por hip\'otesis inductiva, $|\tilde{E}| = n - 1$.
+
+			Como $G$ es conexo, hay por lo menos una arista que une $x$ con alg\'un elemento de $\tilde{G}$, luego $|E| \ge |\tilde{E}| + 1 \ge n$ como queria ver
+		}
+
+		\item $G=(V,E)$ no tiene ciclos $\implies |E| \le |V| - 1$
+		\demo{
+			Si $|V| = 1, |E| = 0$, en caso contrario tendria un camino $x \to x$, con $x \in V$, que es un ciclo.
+
+			Si $|V| > 1$, puedo numerar los vertices $v_1, \dots, v_n$ de manera que $v_1 \neq v_n$ y tanto $v_1$ como $v_n$ tienen un \'unico vecino.
+			Si no fuera as\'i tendr\'ia un $k$ tal que $v_n \to v_k \to v_{k+1} \to \dots \to v_n$, y un $l$ tal que $v_1 \to v_l \to \dots \to v_1$, pero $G$ no admite ciclos.
+		}
+	\end{enumerate}
+
+	Ahora veamos el enunciado:
+
+	\paragraph{
+		$T$ es un \'arbol $\implies$ $T$ es conexo y $m = n - 1$
+	}:
+
+		Como es arbol es conexo y no tiene ciclos, luego $m \ge n - 1$ y $m \le n - 1$
+
+	\paragraph{
+		$T$ es conexo y $m = n - 1 \implies T$ no tiene ciclos y $m = n - 1$
+	}:
+
+		$m = n - 1 \implies m > n - 1$ es falso $\implies T$ no tiene ciclos
+
+	\paragraph{
+		$T$ no tiene ciclos y $m = n - 1 \implies T$ es un \'arbol
+	}:
+
+		$m = n - 1 \implies m < n - 1$ es falso $\implies T$ es conexo.
+		Adem\'as no tiene ciclos, luego es un arbol.
+	\qed

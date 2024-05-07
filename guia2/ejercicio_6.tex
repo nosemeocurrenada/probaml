@@ -1,0 +1,13 @@
+\begin{ejercicio}{6}{
+	Una matriz de transici\'on $P$ se dice sim\'etrica si $P (x, y) = P (y, x)$ para todo $x, y \in S$. Probar que si $P$ es sim\'etrica, la distribuci\'on uniforme en $S (\pi(x) = \frac{1}{|S|}$ para todo $x \in S)$ es invariante para $P$.
+}{
+	$$
+	\frac{1}{|S|}
+	= \pi(x)
+	= (\pi P)(x)
+	= \sum_{y \in S} \pi (y) P(y,x)
+	= \frac{1}{|S|} \sum_{y \in S} P(x,y)
+	= \frac{1}{|S|} \sum_{y \in S} \mathbb P_x(y)
+	= \frac{1}{|S|}
+	$$
+}\end{ejercicio}
