@@ -33,27 +33,16 @@ Estimar $\theta$.
 	$\hat F_n^{-1}(\frac 1 2) = X^{(\floor*{\frac {n+1} 2})}$
 	es un estimador plug-in de la mediana.
 
-	El siguiente script de Python, con el archivo \verb|clouds.dat|
+	El siguiente script de Python que se encuentra en la carpeta como \verb|clouds.py|,
+	con el archivo \verb|clouds.dat|
 	en el directorio donde se ejecuta el script,
 	calcula esa mediana para los datos que se solicitan
-\begin{verbatim}
-import csv
 
-data = []
-with open('clouds.dat') as f:
-    reader = csv.DictReader(f, delimiter='\t')
-    for row in reader:
-        data.append(row)
+\begin{minipage}{0.95\linewidth}
+\lstinputlisting[language=Python, basicstyle=\small]{guia3/clouds.py}
+\end{minipage}
 
-keys = data[0].keys()
-data = {k: [float(data[i][k]) for i in range(len(data))] for k in keys}
-
-def median(l):
-    return sorted(l)[ (len(l) + 1) // 2 ]
-
-print ({k: median(data[k]) for k in keys})
-\end{verbatim}
-
+\paragraph{}
 Al finalizar muestra en la consola
 \begin{verbatim}{'Unseeded_Clouds': 47.3, 'Seeded_Clouds': 242.5}\end{verbatim}
 
