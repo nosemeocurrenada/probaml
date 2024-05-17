@@ -1,0 +1,44 @@
+\paragraph{Ejercicio 4}
+	Sean $X_1, \cdots , X_n$ variables independientes
+	con funci\'on de distribuci\'on acumulada $F$
+	y $a < b$.
+	Hallar el estimador plug-in de $\mathbb P(a < X_1 \leq b)$,
+	su esperanza,
+	su varianza
+	y su distribución asintótica.
+
+\demo{
+	Sea $T(F) = \mathbb P(a < X_1 \le b) = F(b) - F(a)$.
+	Luego, su estimador plug-in es
+	\begin{gather*}
+		T(\hat F_n)
+		= \hat F_n(b) - \hat F_n(a)
+		= \frac 1 n \sum_{i = 1}^{n} \bbone \{ X_i \le b \}
+		- \frac 1 n \sum_{i = 1}^{n} \bbone \{ X_i \le a \}
+		\\ = \frac 1 n \sum_{i = 1}^{n} \bbone \{ a < X_i \le b \}
+	\end{gather*}
+
+	Tiene esperanza
+	\begin{gather*}
+		\mathbb E(T(\hat F_n))
+		= \frac 1 n \sum_{i = 1}^{n} \mathbb P(a < X_i \le b)
+		= \mathbb P(a < X_i \le b)
+	\end{gather*}
+
+	y varianza
+	\begin{gather*}
+		\mathbb V(T(\hat F_n))
+		= \mathbb V(\frac 1 n \sum_{i = 1}^{n} \bbone \{ a < X_i \le b \})
+		= \frac 1 {n^2} \sum_{i = 1}^{n} \mathbb V(\bbone \{ a < X_i \le b \})
+		\\ = \frac 1 {n^2} \sum_{i = 1}^{n} \mathbb P(a < X_i \le b)(1 - \mathbb P(a < X_i \le b))
+		= \frac 1 {n} \mathbb P(a < X_1 \le b)(1 - \mathbb P(a < X_1 \le b))
+	\end{gather*}
+
+	Como $\bbone \{ a < X_i \le b \} \sim \text{Be}(\mathbb P(a < X_1 \le b))$,
+	vale
+	$$
+		T(\hat F_n)
+		= \frac 1 n \sum_{i = 1}^{n} \bbone \{ a < X_i \le b \}
+		\overset{\text{c.s.}}\rightarrow \mathbb P(a < X_1 \le b)
+	$$
+}

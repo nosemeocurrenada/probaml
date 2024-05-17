@@ -8,6 +8,7 @@
 	"settings": {
 		// Latextools options
 		"open_pdf_on_build": false,
-		"TEXroot": "guia2.tex",
+		"TEXroot": "guia3.tex",
+		"preview_math_mode": "none"
     }
 }

@@ -1,0 +1,28 @@
+\paragraph{Ejercicio 3}
+	Sean
+	$X_1, \dots , X_n \sim \text{Be}(p)$
+	y sean
+	$Y_1, \dots , Y_n \sim \text{Be}(q)$
+	independientes.
+	Hallar el estimador plug-in de $p$ y de $p - q$.
+
+\demo{
+	Sea $\hat F_n$ distribuci\'on emp\'irica de $X_1, \dots , X_n$.
+
+	Como $p = \mathbb E_F(X_i)$, su estimador plug-in es
+	$\mathbb E_{\hat F_n}(X) = \bar X_n$.
+	\\
+	Considero las variables $Z_i = X_i - Y_i$ con distribuci\'on emp\'irica
+	$\hat G_n$, como
+	\begin{gather*}
+		\mathbb E(Z_i)
+		= 1 \cdot \mathbb P(X_i = 1, Y_i = 0)
+		+ 0 \cdot \mathbb P(X_i = Y_i)
+		- 1 \cdot \mathbb P(X_i = 0, Y_i = 1)
+		\\ = p(1-q) - (1-p)q
+		= p - pq - q + pq
+		= p - q
+	\end{gather*}
+	el estimador plug-in de $p-q$ resulta
+	$\mathbb E_{\hat G_n}(Z) = \bar X_n - \bar Y_n$
+}

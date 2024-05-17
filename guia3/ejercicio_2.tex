@@ -1,0 +1,51 @@
+\paragraph{Ejercicio 2}
+	Sean $F$ y $G$ dos funciones de distribuci\'on y supongamos que $T$ es un funcional estad\'istico que verifica
+
+\begin{equation}
+\label{lips}
+	|T(F) - T(G)| \leq C ||F - G||_{\infty}
+\end{equation}
+
+\begin{itemize}
+	\item Probar que $T(\hat F_n) \to T(F)$ c.s.
+	\demo{
+	$$
+		|T(F) - T(\hat F_n)|
+		\leq
+		C ||F - \hat F_n||_{\infty}
+		=
+		C \sup_x |F(x) - \hat F_n(x)|
+	$$
+	Por Glivenko-Cantelli, $\sup_x |F(x) - \hat F_n(x)| \to 0$ c.s.
+	}
+
+	\item Probar que si $|X| \leq M < \infty$, $T(F) = \mathbb E_F(X)$ verifica (\ref{lips})
+	\demo{
+	Como $|X| \leq M$ esta acotada, es integrable, y vale
+	$\int_{a}^{b} x dF(x) = (bF(b) - aF(a)) - \int_{a}^{b} F(x) dx$.
+	Ademas integra $0$ fuera del intervalo $[-M,M]$. Luego
+	\begin{gather*}
+		\left| \mathbb E_F(X) - \mathbb E_G(X) \right|
+		= \left| \int_{-M}^{M} x dF(x) - \int_{-M}^{M} x dG(x) \right|
+		= \left| \int_{-M}^{M} x d(F(x) - G(x)) \right|
+		\\
+		=
+		\left|
+		M( F(M)-G(M)) + M(F(-M)-G(-M))
+		- \int_{-M}^{M} F(x) - G(x) dx
+		\right|
+		\\
+		\leq
+		M|F(M)-G(M)| + M|F(-M)-G(-M)|
+		- \left|
+		\int_{-M}^{M} F(x) - G(x) dx
+		\right|
+		\\
+		\leq
+		2M ||F - G ||
+		+
+		\int_{-M}^{M} ||F-G|| dx
+		= 4M ||F-G||
+	\end{gather*}
+	}
+\end{itemize}

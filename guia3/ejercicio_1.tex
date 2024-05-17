@@ -1,0 +1,50 @@
+\paragraph{Ejercicio 1}
+	Sean $x$ e $y$ dos puntos distintos.
+	Hallar Cov($\hat F_n(x)$, $\hat F_n(y)$)
+
+\demo{
+	La distribuci\'on emp\'irica $\hat F_n(x)$ est\'a dada por
+	$$\hat F_n(x) := \frac{1}{n}\sum_{i=1}^{n} \bbone \{ X_i \le x \}$$
+
+	Luego vale $\mathbb E(\hat F_n(x)) = F(x) \quad \forall x \in \R$
+
+	\begin{align*}
+	\mathbb E ( \hat F_n(x) \cdot \hat F_n(y) )
+	&= \mathbb E\left[ \left(\frac{1}{n}\sum_{i=1}^{n} \bbone \{ X_i \le x \}\right)
+	\cdot \left(\frac{1}{n}\sum_{j=1}^{n} \bbone \{ X_j \le y \}\right)\right]
+	\\& = \mathbb E\left[
+		\frac{1}{n^2}\left(
+		\sum_{i=j}^{n} \bbone \{ X_i \le x \} \cdot \bbone \{ X_i \le y \}
+		+
+		\sum_{i \neq j}^{n} \bbone \{ X_i \le x \} \cdot \bbone \{ X_j \le y \}
+		\right)
+		\right]
+	\end{align*}
+
+	La variable
+	$\bbone \{ X_i \le x \} \cdot \bbone \{ X_i \le y \}$
+	toma el valor $1$ si y solo si 
+	$ X_i \le x \wedge y $,
+	donde $x \wedge y$ indica el minimo entre $x$ e $y$.
+	Luego
+	\begin{align*}
+	\mathbb E ( \hat F_n(x) \cdot \hat F_n(y) )
+	& = \frac{1}{n^2} 
+		n F(x \wedge y)
+		+
+		\frac{1}{n^2}
+		(n^2 - n) F(x)F(y)
+	\\&= \frac{1}{n} 
+		F(x \wedge y)
+		+
+		\left( 1-\frac{1}{n} \right)
+		F(x)F(y)
+	\end{align*}
+
+	Luego la covarianza es
+	\begin{align*}
+	\text{Cov}(\hat F_n(x), \hat F_n(y)) &= \mathbb{E} (\hat F_n(x) \cdot \hat F_n(y)) - \mathbb{E} (\hat F_n(x)) \mathbb{E}(\hat F_n(y))
+	\\ &= \frac{1}{n} F(x \wedge y) + \left(1-\frac{1}{n}\right) F(x)F(y) - F(x)F(y)
+	\\ &= \frac{1}{n} F(x \wedge y) - F(x)F(y)
+	\end{align*}
+}

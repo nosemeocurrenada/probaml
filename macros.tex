@@ -1,8 +1,12 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
 
-\sloppy
+% \sloppy
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \newcommand{\R}{ \mathbb R }
 \newcommand{\E}{ \mathbb E }
@@ -22,3 +26,5 @@
 	\demo{#3}
 }{
 }
+
+\DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}

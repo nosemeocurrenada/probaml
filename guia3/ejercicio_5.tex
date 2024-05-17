@@ -1,0 +1,61 @@
+\paragraph{Ejercicio 5}
+
+En 1975 se condujo un experimento para ver si la siembra de nubes produc\'ia lluvia.
+Se sembraron 26 nubes con nitrato de plata y otras 26 se dejaron sin sembrar.
+La elecci\'on de sembrar o no cada una de las nubes fue hecha al azar.
+Los datos del experimento se encuentran en
+\texttt{https://www.stat.cmu.edu/\~larry/all-of-nonpar/data.html}
+
+Sea $\theta = T(F_1) - T(F_2)$ la diferencia entre la mediana de las precipitaciones de cada uno de los grupos.
+Estimar $\theta$.
+
+\paragraph{$D/$}
+	$F^{-1}(\frac 1 2) = \inf \{x \in \mathbb R : F(x) \ge \frac 1 2\}$ es una mediana de $F$.
+
+	En el caso de una distribuci\'on emp\'irica $\hat F_n$, buscar este \'infimo es buscar el m\'inimo $x$ tal que
+	\begin{gather*}
+		\hat F_n(x) = \frac 1 n \sum_{i=1}^{n} \bbone \{ X_i \le x \} \ge \frac 1 2
+	\end{gather*}
+	Esto vale si y solo si
+	\begin{gather*}
+		\sum_{i=1}^{n} \bbone \{ X_i \le x \} \ge \frac n 2
+	\end{gather*}
+	Que se minimiza cuando
+	\begin{gather*}
+		\sum_{i=1}^{n} \bbone \{ X_i \le x \} = \floor*{\frac {n+1} 2}
+	\end{gather*}
+
+	Luego,
+	si $X^{(1)} \le \dots \le X^{(n)}$
+	corresponde a las variables
+	$X_1, \cdots, X_n$
+	ordenadas de manera ascendente,
+	$\hat F_n^{-1}(\frac 1 2) = X^{(\floor*{\frac {n+1} 2})}$
+	es un estimador plug-in de la mediana.
+
+	El siguiente script de Python, con el archivo \verb|clouds.dat|
+	en el directorio donde se ejecuta el script,
+	calcula esa mediana para los datos que se solicitan
+\begin{verbatim}
+import csv
+
+data = []
+with open('clouds.dat') as f:
+    reader = csv.DictReader(f, delimiter='\t')
+    for row in reader:
+        data.append(row)
+
+keys = data[0].keys()
+data = {k: [float(data[i][k]) for i in range(len(data))] for k in keys}
+
+def median(l):
+    return sorted(l)[ (len(l) + 1) // 2 ]
+
+print ({k: median(data[k]) for k in keys})
+\end{verbatim}
+
+Al finalizar muestra en la consola
+\begin{verbatim}{'Unseeded_Clouds': 47.3, 'Seeded_Clouds': 242.5}\end{verbatim}
+
+Luego $\hat \theta = 242.5 - 47.3 = 195.2 \text{aft} = 240775.3 \text{m}^3$ si $F_1$ correspondia a las semillas sembradas, y $F_2$ a aquellas que quedaron sin sembrar.
+\qed
